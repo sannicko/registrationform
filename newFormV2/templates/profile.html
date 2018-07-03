@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block mainContent %}
+{% block navBar %}	
+	{% include "includes/navbar.html" %}
+{% endblock %}
+	<div class="row">
+		<h3>Name :{{userObject.friend.first_name}}</h3>
+
+		<h3>Email :{{userObject.friend.email}}</h3>
+	</div>
+{% endblock %}

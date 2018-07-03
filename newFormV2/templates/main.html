@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+
+{% block mainContent %}
+
+<div class="row">
+	<div class="col-md-6">
+			<h3>SignUp</h3>
+			      <form class="form-horizontal" role="form" action="{% url 'users:user_signup' %}" method="post">
+			        {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="first Name"  class="col-md-4 col-sm-6 control-label">
+                                    First Name:</label>
+                                    <div class="col-md-4 col-sm-6">
+			                            {% if form.first_name.errors %}
+			                            <span class="help-inline">
+			                            	{{ form.first_name.errors }}
+			                            </span>
+			                            {% endif %}
+                                        <span class="block input-icon input-icon-right">
+                                            <input type="text" name="{{ form.first_name.name }}" class="form-control" {% if form.first_name.value %} value="{{ form.first_name.value }}" 
+                                            {% endif %} placeholder="First Name" />
+                                        </span>
+                                    </div>
+                                </div>
+                                
+				 				<div class="form-group">
+								    <label for="lastName" class="col-md-4 col-sm-6 control-label">Last Name:</label>
+								    <div class="col-md-4 col-sm-6">
+			                            {% if form.last_name.errors %}
+			                            <span class="help-inline">{{ form.last_name.errors }}</span>
+			                            {% endif %}
+								        
+								        <input type="text" class="form-control" id="lastName" 
+								        name="lastName" 
+								        placeholder="Last Name" {% if form.last_name.value %} 
+								        value="{{ form.last_name.value }}"{% endif %}>
+								    </div>
+								</div>
+								
+								  <div class="form-group">
+								    	<label for="phoneNumber" class="col-md-4 col-sm-6 control-label">Phone Number:</label>
+									    <div class="col-md-4 col-sm-6">
+									    	{% if form.phoneNumber.errors %}
+				                            	<span class="help-inline">{{ form.phoneNumber.errors }}</span>
+				                            {% endif %}
+										    <input type="text" class="form-control bfh-phone" id="phoneNumber" 
+										    data-country="US" name="{{form.phoneNumber.name}}" 
+										    {% if form.phoneNumber.value %} value="{{form.phoneNumber.value}}"
+										     {% endif %}}>
+									    </div>
+								  </div>
+
+								<div class="form-group">
+								    <label for="Password" class="col-md-4 col-sm-6 control-label">Password:</label>
+								    
+								    <div class="col-md-4 col-sm-6">
+			                            {% if form.password.errors %}
+			                            <span class="help-inline">{{ form.password.errors }}</span>
+			                            {% endif %}
+								        
+								        <input type="password" class="form-control" id="passwd" name="password"
+			                            {% if form.password.value %} value="{{ form.password.value }}"{% endif %} placeholder="Password">
+								    </div>
+								</div>
+
+								<div class="form-group">
+								    <div class="col-md-offset-4 col-sm-offset-2 col-sm-10">
+								      <button type="submit" class="btn btn-primary">Register</button>
+								    </div>
+				  				</div>
+				 		</form>
+					
+				</div>
+		<div class="col-md-6">
+			<div  style="text-align: center;">
+				<form class="form-horizontal" role="form" action="{% url 'users:user_login' %}" method="post">
+	               {% csrf_token %}
+	                <h3>Login</h3>
+		 				<div class="form-group">
+						    <label for="phoneNumber" class="col-md-4 col-sm-6 control-label">Phone Number:</label>
+						    <div class="col-md-4 col-sm-6">
+	                        {{ form.non_field_errors }}
+	                            {% if form.getNumber.errors %}
+	                            <span class="help-inline">{{ form.getNumber.errors }}</span>{% endif %}
+	                            <input type="text" class="form-control bfh-phone" id="loginNumber" 
+	                            data-country="US" name="{{form.getNumber.name}}" 
+	                            {% if form.getNumber.value %} value="{{form.getNumber.value}}" {% endif %}}>
+						    </div>
+						</div>
+
+						<div class="form-group">
+						    <label for="password" class="col-md-4 col-sm-6 control-label">Password: </label>
+						    <div class="col-md-4 col-sm-6">
+	                            {% if form.password.errors %}<span class="help-inline">{{ form.password.errors }}</span>{% endif %}
+						        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+						    </div>
+						</div>
+
+						<div class="form-group">
+						    <div class="col-md-offset-1 col-sm-offset-2 col-sm-10">
+						      <button type="submit" class="btn btn-primary">LogIn</button>
+						    </div>
+		  				</div>
+		 			</form>
+			</div>
+		</div>
+</div>
+{% endblock mainContent %}
